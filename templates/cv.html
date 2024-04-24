@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<link href="{{ url_for('static', filename='forma.css') }}" rel="stylesheet" type="text/css">
+		<title>Curriculum Vitae</title>
+	
+	</head>
+
+	<body>
+	<div id="contenedor">
+		<div id="header">
+			<div class="nombre">
+				<l1>{{name}} {{last_name}}</l1>
+				<p>{{occupation}}</p>
+			</div>
+		</div>
+
+		<div id="parent">
+			<div id="narrow">
+				<div class="textoN">
+					<sub>CONTACTO</sub>
+					<div class="contact-info">
+						<li>Número: {{phone}}</li>
+						<li>Correo: {{email}}</li>
+					</div>
+					<sub>FECHA DE NACIMIENTO</sub>
+					<ul>
+						<li>{{born}}</li>
+					  </ul>
+					<sub>NACIONALIDAD</sub>
+					  <ul>
+						  <li>{{nationality}}</li>
+						</ul>
+					<sub>IDIOMAS</sub>
+					<ul>
+						<li>Español: Materno</li>
+						<li>Ingles: {{english_level}}</li>
+					  </ul>
+					<sub>APTITUDES</sub>
+					<ul>
+						<li>{{aptitudes}}</li>
+					  </ul>
+					<sub>HABILIDADES</sub>
+					<ul>
+						<li>{{habilities}}</li>
+					  </ul>
+					
+					<sub>LENGUAJES DE PROGRAMACION</sub>
+					  <ul><li>{{programing_languagues}}</li></ul>
+				</div>
+			</div>
+
+			<div id="wide">
+				<div class="textoW">
+					<sub1>PERFIL</sub1>
+						<div class="textP">
+							<li>
+								{{perfil}}
+								</li>
+						</div>
+
+					<sub1>EXPERIENCIA LABORAL</sub1>
+					<div class="textE">
+						{% for experiencia in experiencia_laboral %}
+							<h3>{{ experiencia.ocupacion }}</h3>
+							<p>{{ experiencia.ubicacion }}, {{ experiencia.fecha_inicio }} - {{ experiencia.fecha_fin }}</p>
+							<ul>
+								<li>{{ experiencia.descripcion }}</li>
+							</ul>
+						{% endfor %}
+					</div>
+
+					<sub1>FORMACION</sub1>
+						<div class="textF">
+							<h3>Grado de Trabajo Social</h3>
+							<p>ESMA, Madrid | 2012-2015</p>
+							<h3>Licenciatura Profesional</h3>
+							<p>Universidad de la Frontera, México DF 2011-2012</p>
+						</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	</body>
+
+</html>

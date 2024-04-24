@@ -1,0 +1,246 @@
+<!DOCTYPE HTML>
+
+  <style>
+        
+  legend{
+      border: solid 1px #075c48;
+      padding: 5px;
+      font-weight: bold;
+      border-radius: 20px;
+      background: lightgreen;}
+
+    </style>
+
+<form action= "{{ url_for('cv') }}" method="post">
+
+  {% if error %}
+  <div style="color: red;">{{ error }}</div>
+  {% endif %}
+
+  <fieldset>
+
+    <legend>Información básica</legend>
+    <ul>
+
+    <p><label>Nombres: <input type="text" name="name"></label>
+      <label>Apellidos: <input type="text" name="last_name"></label></p>
+    <p><label>Fecha de nacimiento: <input type="date" name="born"></label></p>
+
+    <p><label>Ocupacion: <input type="text" name="occupation"></label></p>
+
+    <label for="nacionality">Elige nacionalidad:</label>
+    <select id="nacionality" name="nationality">
+      <option value="Chile">Chile</option>
+      <option value="Argentina">Argentina</option>
+      <option value="Colombia">Colombia</option>
+      <option value="Ecuador">Ecuador</option>
+      <option value="Venezuela">Venezuela</option>
+      <option value="España">España</option>
+      <option value="Bolivia">Bolivia</option>
+      <option value="Uruguay">Uruguay</option>
+      <option value="Paraguay">Paraguay</option>
+      <option value="Peru">Peru</option>
+    </select>
+
+    </ul>
+  </fieldset>
+  <br/>
+
+  <fieldset>
+
+    <legend>Información extra </legend>
+ 
+    <ul>
+
+    <p>Perfil:<p>
+
+    <textarea id="perfil" name="perfil" rows="perfil" cols="perfil">
+    
+    </textarea>
+
+    <p>Nivel de ingles:</p>
+      <br/>
+
+      <label><input type="radio" name="english_level" value="basico">basico</label>
+
+      <label><input type="radio" name="english_level" value="intermedio">intermedio</label>
+
+      <label><input type="radio" name="english_level" value="avanzado">avanzado</label>
+
+      <label><input type="radio" name="english_level" value="fluido">fluido</label>
+
+      <br/><br/>
+
+      <p>Elige tus lenguajes de programacion:</p>
+
+      <select name="programing_languagues" id="programing_languagues" multiple>
+        <option value="Python">Java</option>
+        <option value="C++">php</option>
+        <option value="C#">C#</option>
+        <option value="JavaScript">JavaScript</option>
+        <option value="php">C++</option>
+        <option value="Java">Python</option>
+      </select>
+      <br/><br/>
+
+      <p><label>Elige tus aptitudes: <input type="text" name="aptitudes" list="list_of_aptitudes"></label></p>
+
+<datalist id="list_of_aptitudes">
+
+    <select name="aptitudes">
+
+      <option>Inteligencia emocional</option>
+
+      <option>Espiritu critico</option>
+
+      <option>Trabajo en equipo</option>
+
+      <option>Capacidad analitica</option>
+
+      <option>Habilidades fisicas</option>
+
+    </select>
+
+  </label>
+
+</datalist>
+
+  <p>Elige tus habilidades:</p>
+
+    <label><input type="checkbox" name="habilities" value="Acondicionamiento fisico" checked>Acondicionamiento fisico</label><br />
+    <label><input type="checkbox" name="habilities" value="Creacion de videos">Creacion de videos</label><br />
+    <label><input type="checkbox" name="habilities" value="Pack office">Pack office</label><br />
+    <label><input type="checkbox" name="habilities" value="Tenis">Tenis</label><br />
+
+    <button type="button" onclick="agregarExperienciaLaboral()">Agregar Experiencia Laboral</button>
+    <button type="button" onclick="agregarFormacion()">Agregar Formación</button>
+    <button type="button" onclick="agregarIdioma()">Agregar Idioma</button>
+    <button type="button" onclick="agregarAptitud()">Agregar Aptitud</button>
+    <button type="button" onclick="agregarHabilidad()">Agregar Habilidad</button>
+
+  </ul>
+  </fieldset>
+
+
+  </br>
+
+  <fieldset id="experienciaLaboralSection">
+    <legend>Experiencia Laboral</legend>
+    <div>
+        <label for="empleador1">Empleador:</label>
+        <input type="text" id="empleador1" name="empleador1">
+        <label for="cargo1">Cargo:</label>
+        <input type="text" id="cargo1" name="cargo1">
+        <label for="fechaInicio1">Fecha de inicio:</label>
+        <input type="date" id="fechaInicio1" name="fechaInicio1">
+        <label for="fechaFin1">Fecha de fin:</label>
+        <input type="date" id="fechaFin1" name="fechaFin1">
+        <label for="descripcion1">Descripción del trabajo:</label>
+        <textarea id="descripcion1" name="descripcion1" rows="4" cols="50"></textarea>
+    </div>
+  </fieldset>  
+
+  <fieldset>
+
+    <legend>Contacto</legend>
+    <ul>
+
+    <p><label>Número telefónico: <input type="text" name="phone"></label></p>
+
+    <p><label>Correo electronico: <input type="email" name="email"></label></p>
+
+    </ul>
+  </fieldset>
+  <br/> 
+
+    <input type="hidden" id="experienciaLaboralCount" name="experienciaLaboralCount" value="1">
+
+    <input type="submit" value="Enviar datos">
+    <input type="reset" value="Restaurar formulario">
+
+  <script>
+    function agregarExperienciaLaboral() {
+        var count = parseInt(document.getElementById("experienciaLaboralCount").value);
+        var fieldset = document.getElementById("experienciaLaboralSection");
+        fieldset.style.display = "block";
+
+        var newFieldset = document.createElement("fieldset");
+        newFieldset.innerHTML = `
+            <legend>Experiencia Laboral ${count + 1}</legend>
+
+            <div>
+                <label for="empleador${count + 1}">Empleador:</label>
+                <input type="text" id="empleador${count + 1}" name="empleador${count + 1}">
+                <label for="cargo${count + 1}">Cargo:</label>
+                <input type="text" id="cargo${count + 1}" name="cargo${count + 1}">
+                <label for="fechaInicio${count + 1}">Fecha de inicio:</label>
+                <input type="date" id="fechaInicio${count + 1}" name="fechaInicio${count + 1}">
+                <label for="fechaFin${count + 1}">Fecha de fin:</label>
+                <input type="date" id="fechaFin${count + 1}" name="fechaFin${count + 1}">
+                <label for="descripcion${count + 1}">Descripción del trabajo:</label>
+                <textarea id="descripcion${count + 1}" name="descripcion${count + 1}" rows="4" cols="50"></textarea>
+            </div>`;
+        
+        fieldset.appendChild(newFieldset);
+        document.getElementById("experienciaLaboralCount").value = count + 1;
+    }
+
+    function agregarFormacion() {
+      var count = parseInt(document.getElementById("formacionCount").value);
+      var fieldset = document.getElementById("formacionSection");
+
+      var newFieldset = document.createElement("fieldset");
+      newFieldset.innerHTML = `
+          <legend>Formación ${count + 1}</legend>
+          <div>
+              <label for="institucion${count + 1}">Institución:</label>
+              <input type="text" id="institucion${count + 1}" name="institucion${count + 1}">
+              <label for="titulo${count + 1}">Título:</label>
+              <input type="text" id="titulo${count + 1}" name="titulo${count + 1}">
+              <label for="fechaInicioFormacion${count + 1}">Fecha de inicio:</label>
+              <input type="date" id="fechaInicioFormacion${count + 1}" name="fechaInicioFormacion${count + 1}">
+              <label for="fechaFinFormacion${count + 1}">Fecha de fin:</label>
+              <input type="date" id="fechaFinFormacion${count + 1}" name="fechaFinFormacion${count + 1}">
+              <label for="descripcionFormacion${count + 1}">Descripción:</label>
+              <textarea id="descripcionFormacion${count + 1}" name="descripcionFormacion${count + 1}" rows="4" cols="50"></textarea>
+          </div>`;
+
+      fieldset.appendChild(newFieldset);
+      document.getElementById("formacionCount").value = count + 1;
+    }
+
+    function agregarIdioma() {
+      var count = parseInt(document.getElementById("idiomasCount").value);
+      var fieldset = document.getElementById("idiomasSection");
+
+      var newFieldset = document.createElement("fieldset");
+      newFieldset.innerHTML = `
+          <legend>Idioma ${count + 1}</legend>
+          <div>
+              <label for="idioma${count + 1}">Idioma:</label>
+              <input type="text" id="idioma${count + 1}" name="idioma${count + 1}">
+              <label for="nivelIdioma${count + 1}">Nivel:</label>
+              <input type="text" id="nivelIdioma${count + 1}" name="nivelIdioma${count + 1}">
+          </div>`;
+
+      fieldset.appendChild(newFieldset);
+      document.getElementById("idiomasCount").value = count + 1;
+    }
+
+    function agregarAptitud() {
+      var count = parseInt(document.getElementById("aptitudesCount").value);
+      var fieldset = document.getElementById("aptitudesSection");
+
+      var newFieldset = document.createElement("fieldset");
+      newFieldset.innerHTML = `
+          <legend>Aptitud ${count + 1}</legend>
+          <div>
+              <label for="aptitud${count + 1}">Aptitud:</label>
+              <input type="text" id="aptitud${count + 1}" name="aptitud${count + 1}">
+          </div>`;
+
+      fieldset.appendChild(newFieldset);
+      document.getElementById("aptitudesCount").value = count + 1;
+    }
+  </script>
+</form>

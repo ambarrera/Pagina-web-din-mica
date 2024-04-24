@@ -1,0 +1,87 @@
+#contenedor{height: flex; width: 750px; background-color: antiquewhite;
+    margin: auto;}
+#header{
+    width: 750; 
+    height: 180px;
+    background-color: grey;
+    display: flex;
+    text-align: center;
+}
+
+BODY {
+    display: flex;
+    flex-direction: column;
+    background-color: seashell
+}
+
+.nombre
+{
+    font-family: Bahnschrift SemiBold;
+    font-size: 30px;
+    color: azure;
+    margin-top: 30px;
+    margin: auto;
+}
+
+#parent {
+    display: flex;
+  }
+  #narrow {
+    width: 200px;
+    height: flex;
+    background: lightgray;
+  }
+  #wide {
+    flex: 1;
+    height: flex;
+    background: whitesmoke;
+  }
+
+  .textoN sub {
+    display: block;
+    margin-bottom: 10px; 
+    font-size: 20px;
+    margin-left: 15px; margin-top: 15px;
+    border-bottom: 1px solid black;
+    width: 85%;
+}
+
+
+.textoW sub {
+    display: block;
+    margin-bottom: 10px; 
+    font-size: 20px;
+    margin-left: 15px; margin-top: 15px;
+    border-bottom: 1px solid black;
+    width: 95%;
+}
+
+.textoW sub1 {
+    display: block;
+    margin-bottom: 10px; 
+    font-size: 20px;
+    margin-left: 15px; margin-top: 15px;
+    border-bottom: 1px solid black;
+    width: 95%;
+}
+
+.contact-info {
+   margin-left: 6px;
+}
+
+.textP{
+    margin-left: 20px;
+    margin-right: 5px;
+}
+
+.textE{
+    margin-left: 20px;
+    margin-right: 19px;
+}
+
+.textF{
+    margin-left: 20px;
+    margin-right: 10px;
+}
+
+
